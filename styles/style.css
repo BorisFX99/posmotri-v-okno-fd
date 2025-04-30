@@ -67,8 +67,7 @@ ol {
   display: grid;
   grid-template-areas: 'result content__details';
   max-width: 1140px;
-  max-height: 534px;
-  margin: 133px 30px;
+  margin: auto 30px;
   gap:30px;
 }
 
@@ -131,11 +130,13 @@ ol {
   all: unset;
   border-top: 1px solid rgb(255 255 255 / 1);
   border-bottom: 1px solid rgb(255 255 255 / 1);
+  border-left:1px solid transparent;
+  border-right:1px solid transparent;
   padding: 2px 0;
   width: 100%;
-  font-family: 'Fira Sans Condensed';
+  font-family: 'Fira Sans Condensed', sans-serif;
   line-height: 22px;
-  color: rgb(255 255 255 / 0.7);
+  color: rgb(255 255 255 / 1);
   appearance: none;
 }
 
@@ -163,11 +164,11 @@ ol {
 .search-form__checkbox-list {
   display: flex;
   gap: 15px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
 }
 
 .search-form__label-text {
-line-height: 22px;
+  line-height: 22px;
 }
 
 .search-form__pseudo-checkbox {
@@ -185,15 +186,15 @@ line-height: 22px;
   outline-offset: 1px;
 }
 
-.search-form__checkbox:checked + span::after {
+.search-form__checkbox:checked + span::before {
   content: '';
   position: absolute;
+  width: 16px;
+  height: 16px;
   display: block;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
   background-color: #fff;
 }
 
@@ -203,20 +204,37 @@ line-height: 22px;
   text-decoration-thickness: 1px;
   text-decoration-skip-ink: none;
 }
+
+.search-form__checkbox-list .search-form__label:active {
+  text-decoration:none;
+}
+
+.search-form__label:active .search-form__checkbox + span::after {
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  display: block; 
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+}
+
  /* --------конец состояний----------*/
 
 .button {
   width: 100%;
-font-family: 'Fira Sans Condensed';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-line-height: 22px;
-text-align: center;
-color: #fff;
-background-color: transparent;
-border: 1px solid rgb(255 255 255 / 1);
-cursor: pointer;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid rgb(255 255 255 / 1);
+  cursor: pointer;
 }
 
 .search-form__submit-button {
@@ -234,15 +252,16 @@ cursor: pointer;
   outline-offset: 1px;
  }
 
- .button:active{
-  background-color: rgb(84 80 80 / 1);
- }
-
  .button:hover{
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   text-decoration-skip-ink: none;
+ }
+
+ .button:active {
+  background-color: rgb(84 80 80 / 1);
+  text-decoration:none;
  }
  /* --------конец состояний----------*/
 
@@ -264,7 +283,7 @@ cursor: pointer;
 }
 
 .content__accent {
-color: #545050;
+  color: #545050;
 }
 
 .content__list-container {
@@ -293,10 +312,6 @@ color: #545050;
 
 /* Section cards-list-item-template */
 
-.content__list-item:last-child {
-  margin-bottom: 30px;
-}
-
 .content__card-link {
   display: block;
   text-decoration: none;
@@ -320,10 +335,11 @@ color: #545050;
   font-size: 30px;
   line-height: 100%;
   text-transform: uppercase;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-top: 2px;
 }
 
 .content__video-card-description {
@@ -347,6 +363,7 @@ color: #545050;
   padding: 5px 0;
   margin-bottom: 2px;
   margin-left: 2px;
+  margin-top: 30px;
 }
 
 /* Стили состояний карточек скрола .cards-list-item-template */
@@ -355,12 +372,12 @@ color: #545050;
   outline: none;
 }
 
-.content__list-item:has(:focus-visible) {
+.content__list-item:not(:active):has(:focus-visible) {
   outline: 1px solid #fff;
   outline-offset: -1px;
 }
 
-.content__card-link_current .content__video-card-description-container{
+.content__card-link_current .content__video-card-description-container {
   background-color: rgb(84 80 80 / 1);
 }
 
@@ -369,5 +386,13 @@ color: #545050;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   text-decoration-skip-ink: none;
+}
+
+.content__card-link:active {
+  text-decoration: none;
+}
+
+.content__card-link:active .content__video-card-description-container {
+  background-color: rgb(84 80 80 / 1);
 }
 /* --------конец состояний----------*/
